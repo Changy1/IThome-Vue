@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 
+// 引入全局样式
+import '@styles/main.scss'
+
+// 引入flexible 移动端的适配
+import '@libs/flexible'
+
 // 阻止Vue的提示
 Vue.config.productionTip = false
 

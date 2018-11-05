@@ -3,8 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- 这里根据IT之家添加上了这一句让他dpr默认为1 -->
+    <!-- 编辑器内部的字体大小知识写代码时候的计算 -->
+    <!-- 当我们用75px的时候就需要将37.5px的乘以2，比如75px是1rem，那么37.5的就是2rem，否则在页面上会显示37.5px -->
+    <!-- 我们需要跟实际dpr相吻合，1的时候就是用37.5，如果使用75进行编写 -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="stylesheet" href="./libs/styles/animate.css">
     <title>ithome</title>
   </head>
   <body>

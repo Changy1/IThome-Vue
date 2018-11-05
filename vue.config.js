@@ -1,7 +1,7 @@
 const path = require('path')
 
 function resolve(url) {
-    return path.resoleve(__dirname, url)
+    return path.resolve(__dirname, url)
 }
 
 module.exports = {
@@ -15,6 +15,6 @@ module.exports = {
         .set('@styles', resolve('src/styles'))
         .set('@libs', resolve('src/libs'))
         .set('@c', resolve('src/components'))
-        .pages('@pages', resolve('src/pages'))
+        .set('@pages', resolve('src/pages'))
     }
 }
