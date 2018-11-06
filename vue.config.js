@@ -6,7 +6,16 @@ function resolve(url) {
 
 module.exports = {
     devServer: {
-        port: 7000
+        port: 7000,
+        proxy: {
+            '/ithome' : {
+                target: 'https://m.ithome.com',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/ithome': ''
+                }
+            }
+        }
     },
     chainWebpack (config) {
         config

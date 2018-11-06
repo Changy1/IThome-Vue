@@ -4,18 +4,16 @@
       <app-header></app-header>
     </header>
     <main>
-      <app-home></app-home>
+      <router-view></router-view>
     </main>
   </div>
 </template>
 <script>
-import AppHome from '@pages/home/AppHome.vue'
 import AppHeader from '@c/layout/AppHeader.vue'
 
 export default {
     name: 'app',
     components: {
-      AppHome,
       AppHeader
     }
 }

@@ -22,7 +22,7 @@
 
             <app-nav :navshow.sync = 'navshow'></app-nav>
         </div> 
-        <app-tab></app-tab>
+        <app-tab :tabshow = 'tabshow'></app-tab>
     </div>
 </template>
 
@@ -32,12 +32,15 @@ import AppTab from '@c/layout/AppTab'
 export default {  
     data () {
         return {
-            navshow: false
+            navshow: false,
+            tabshow: {          // 这里父组件定义一个对象，给子组件地址，保证下面两级都能改变数据
+                yesorno: false
+            }
         }
     },
     components: {
         AppNav,
-        AppTab
+        AppTab,
     }
 }
 
