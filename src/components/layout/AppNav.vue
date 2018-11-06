@@ -77,7 +77,7 @@ export default {
             width: 80vw;
             height: 100vh;
             background: #fff;
-            z-index: 21;
+            z-index: 30;
             padding: .48rem;
             overflow: auto;
             .nav-personal {

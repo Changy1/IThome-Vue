@@ -7,6 +7,9 @@ import '@styles/main.scss'
 // 引入flexible 移动端的适配
 import '@libs/flexible'
 
+//各种插件
+import '@libs'
+
 // 阻止Vue的提示
 Vue.config.productionTip = false
 
