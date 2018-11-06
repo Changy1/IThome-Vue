@@ -1,40 +1,45 @@
 <template>
-    <div v-if= "navshow" class='nav'>
-        <nav>
-            <div class='nav-personal'>
-                <div class="nav-personal_img">
-                    <img src='https://img.ithome.com/m/images/user/noavatar.png'>
+    <!-- 这里不能给父元素加v-if，如果父元素消失出现的画，子元素不会有动画效果，所以要把父元素的高度设置为0，让他不盖住别的东西 -->
+    <div class='nav'>
+        <transition enter-active-class="slideInRight" leave-active-class="slideOutRight">
+            <nav v-if= "navshow" class='animated'>
+                <div class='nav-personal'>
+                    <div class="nav-personal_img">
+                        <img src='https://img.ithome.com/m/images/user/noavatar.png'>
+                    </div>
+                    <div class="nav-personal_name">
+                        <span class='nav-personal_nickname'>越过</span>
+                        <p>
+                            <span class='nav-personal_lv'>Lv.0</span>
+                            <span class="nav-personal_ID">ID:596116693</span>
+                        </p>
+                    </div>
                 </div>
-                <div class="nav-personal_name">
-                    <span class='nav-personal_nickname'>越过</span>
-                    <p>
-                        <span class='nav-personal_lv'>Lv.0</span>
-                        <span class="nav-personal_ID">ID:596116693</span>
-                    </p>
+                <div class="nav-search">
+                        <img src='//img.ithome.com/m/images/index/search-ico.svg'>
+                        <span>搜索关键词</span>
                 </div>
-            </div>
-            <div class="nav-search">
-                    <img src='//img.ithome.com/m/images/index/search-ico.svg'>
-                    <span>搜索关键词</span>
-            </div>
-            <div class="nav-text">
-                <ul>
-                    <li v-for = 'item in li' :key = 'item.id' >
-                        <img :src= 'item.src'>
-                        <span class=''>{{ item.text }}</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="nav-page">
-                <span>博客版</span>
-                丨
-                <span>极速版</span>
-                丨
-                <span>电脑版</span>
-            </div>
-        </nav>
+                <div class="nav-text">
+                    <ul>
+                        <li v-for = 'item in li' :key = 'item.id' >
+                            <img :src= 'item.src'>
+                            <span class=''>{{ item.text }}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav-page">
+                    <span>博客版</span>
+                    丨
+                    <span>极速版</span>
+                    丨
+                    <span>电脑版</span>
+                </div>
+            </nav>
+        </transition>
         <!-- 这里是sync的用法，update：props 的模式触发数据的改变，父元素会监听这个事件 -->
-        <div @click = "$emit('update:navshow', false)" class="nav-mask"></div>
+        <transition enter-active-class="fadeIn" leave-active-class="fadeOut">
+            <div v-if= "navshow" @click = "$emit('update:navshow', false)" class="nav-mask animated"></div>
+        </transition>
     </div>
 </template>
 
@@ -60,16 +65,17 @@ export default {
 <style lang="scss">
     .nav {
         position: fixed;
-        top: 0; bottom: 0; left: 0; right: 0;
-        width: 100%;
-        height: 100%;
-        margin: auto;
+        top: 0;
+        right: 0;
+        .animated {
+            animation-duration: 0.5s;
+        }
         nav {
             position: absolute;
             top: 0;
-            width: 80%;
-            height: 100%;
             right: 0;
+            width: 80vw;
+            height: 100vh;
             background: #fff;
             z-index: 21;
             padding: .48rem;
@@ -90,7 +96,6 @@ export default {
                     .nav-personal_nickname{
                         display: block;
                         font-size: .426667rem;
-                        color: #333;
                         margin-bottom: .266667rem;
                     }
                     p {
@@ -124,7 +129,6 @@ export default {
                 li {
                     width: 100%;  
                     height: 1.786667rem;  
-                    color: #333;
                     font-size: .426667rem;
                     display: flex;
                     align-items: center;
@@ -148,7 +152,6 @@ export default {
                 background-color: #f4f5f6;
                 border-radius: .533333rem;
                 height: 1.12rem;
-                color: #333;
                 display: flex;
                 align-items: center;
                 justify-content: space-around;
@@ -161,8 +164,10 @@ export default {
         }
         .nav-mask {
             position: absolute;
-            height: 100%;
-            width: 100%;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: 100vw;
             background: rgba( 0, 0, 0, 0.8);
             z-index: 10;
         }
