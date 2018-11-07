@@ -18,16 +18,17 @@ export default {
     },
     data () {
         return {
-            iteminfos: []
+            iteminfos: [],
+            time: Date.now()
         }
     },
     methods: {
         async getFilms () {
-            let time = Date.now()
             let result = await this.$http({
-                url: `ithome/api/news/newslistpageget?Tag=&ot=${time}&page=0`
+                url: `ithome/api/news/newslistpageget?Tag=&ot=${this.time}&page=0`
             })
             this.iteminfos = this.iteminfos.concat(result.Result)
+            this.time =  parseInt(this.time) - 10000000 
         }
     },
     mounted () {
@@ -46,6 +47,7 @@ export default {
 <style lang="scss">
     .home{
         height: 16rem;
+        margin-top: .266667rem;
         overflow: hidden;
     }
 </style>
