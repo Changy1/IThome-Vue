@@ -8,7 +8,7 @@
             </swiper-slide>
         </swiper>
         <button class='tab-button' @click = "tabshow.yesorno = true"></button>
-        <app-unwind v-if = 'tabshow.yesorno' :tabshow = 'tabshow'></app-unwind>
+        <app-unwind :tab = 'tab' :tabshow = 'tabshow' v-if = 'tabshow.yesorno'></app-unwind>
     </div>
 </template>
 
@@ -41,15 +41,15 @@ export default {
                 { id: 21, title: 'windows', path: '/' },
                 { id: 22, title: '科普', path: '/' },
             ],
-            swiperOption: {
-               slidesPerView: 'auto'        //设置slider容器能够同时显示的slides数量（auto 根据宽度自动设定）
+            swiperOption: {                 
+               slidesPerView: 'auto'        // 设置slider容器能够同时显示的slides数量（auto 根据宽度自动设定）
             }
         }
     },
     props: ['tabshow'],
     computed: {
-      swiper() {
-        return this.$refs.mySwiper.swiper
+      swiper() {                                // swiper标签有ref，所以ref里面就有了mySwiper
+        return this.$refs.mySwiper.swiper       // 这里是计算属性，让this.swiper指向当前的轮播图
       }
     },
     components: {

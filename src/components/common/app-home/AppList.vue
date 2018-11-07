@@ -17,8 +17,9 @@ export default {
         }
     },
     async created () {
+        let time = Date.now()
         let result = await this.$http({
-            url: 'ithome/api/news/newslistpageget?Tag=&ot=1541503908000&page=0'
+            url: `ithome/api/news/newslistpageget?Tag=&ot=${time}&page=0`
         })
         this.iteminfos = result.Result
     }

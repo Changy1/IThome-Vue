@@ -15,35 +15,7 @@
 
 <script>
 export default {
-    data () {
-        return {
-            tab: [
-                { id: 1, title: '最新', path: '/home' },
-                { id: 2, title: '排行榜', path: '/rank' },
-                { id: 3, title: '原创', path: '/' },
-                { id: 4, title: '苹果', path: '/' },
-                { id: 5, title: '上热评', path: '/hotcomment' },
-                { id: 6, title: '测评室', path: '/' },
-                { id: 7, title: '发布会', path: '/' },
-                { id: 8, title: '专题', path: '/' },
-                { id: 9, title: '阳台', path: '/' },
-                { id: 10, title: '手机', path: '/' },
-                { id: 11, title: '数码', path: '/' },
-                { id: 12, title: '极客学院', path: '/' },
-                { id: 13, title: 'VR', path: '/' },
-                { id: 14, title: '智能汽车', path: '/' },
-                { id: 15, title: '电脑', path: '/' },
-                { id: 16, title: '京东精选', path: '/' },
-                { id: 17, title: '安卓', path: '/' },
-                { id: 18, title: '网络焦点', path: '/' },
-                { id: 19, title: '行业前沿', path: '/' },
-                { id: 20, title: '游戏电竞', path: '/' },
-                { id: 21, title: 'windows', path: '/' },
-                { id: 22, title: '科普', path: '/' },
-            ],
-        }
-    },
-    props: ['tabshow']
+    props: ['tabshow', 'tab']
 
 }
 </script>

@@ -2,6 +2,14 @@
     <div class='item'>
         <a class='item-box'>
             <div class='item-img'>
+                <span 
+                    class="item-num"
+                    :class="{ 
+                        'item-one' : index == 0 ,  
+                        'item-two' : index == 1 ,
+                        'item-three' : index == 2,
+                        'item-other' : index > 2
+                    }" >{{ index+1 }}</span>
                 <img :src='info.image'>
             </div>
             <div class='item-text'>
@@ -10,17 +18,17 @@
                 </div>
                 <div class='item-text_bottom'>
                     <span class='item-text_time'>{{ info.PostDateStr }}</span>
-                    <span class="item-text_tip"  :class= "oneinfo.TipClass" v-for = '(oneinfo,index) in info.NewsTips' :key = 'index'>{{ oneinfo.TipName }}</span>
+                    <span class="item-text_tip" :class= "oneinfo.TipClass" v-for= '(oneinfo,index) in info.NewsTips' :key = 'index' >{{ oneinfo.TipName }}</span>
                     <span class='item-text_review'>{{ info.commentcount }}评</span>
                 </div>
             </div>
         </a>
-    </div>    
+    </div>      
 </template>
 
 <script>
 export default {
-    props: ['info']
+    props: ['info', 'index']
 }
 </script>
 
@@ -33,10 +41,36 @@ export default {
             justify-content: space-between;
             .item-img{
                 width: 31%;
+                position: relative;
                 img{
                     width: 100%;
                     height: 100%;
                     border-radius: .106667rem;
+                }
+                .item-one{
+                    background: url('//img.ithome.com/m/images/index/rank-gold.png') no-repeat;
+                }
+                .item-two{
+                    background: url('//img.ithome.com/m/images/index/rank-silver.png') no-repeat;
+                }
+                .item-three{
+                    background: url('//img.ithome.com/m/images/index/rank-copper.png') no-repeat;
+                }
+                .item-other{
+                    background: url('//img.ithome.com/m/images/index/rank-other.png') no-repeat;
+                }
+                .item-num{
+                    display: inline-block;
+                    position: absolute;
+                    top: 0;
+                    left: -0.266667rem;
+                    font-size: .32rem;
+                    width: .586667rem;
+                    height: .56rem;
+                    color: #fff;
+                    line-height: .56rem;
+                    text-align: center;
+                    background-size: .586667rem .56rem;
                 }
             }
             .item-text{
