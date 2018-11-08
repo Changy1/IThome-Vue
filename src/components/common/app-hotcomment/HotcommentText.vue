@@ -32,7 +32,6 @@
 </template>
 
 <script>
-
 export default {
     props: ['info', 'index']
 }

@@ -1,34 +1,46 @@
 <template>
-    <div ref='root' class='home'>
-        <div>
-            <app-banner></app-banner>
-            <app-list :iteminfos = 'iteminfos'></app-list>
-        </div>
-    </div>    
+    <div>
+        <div ref='root' class='home'>
+            <div>
+                <app-header></app-header>
+                <app-banner></app-banner>
+                <app-list :iteminfos = 'iteminfos'></app-list>
+            </div>
+        </div>    
+        <transition enter-active-class="fadeIn" leave-active-class="fadeOut">
+            <div @click= "backTop" v-if = 'backshow' class='button-top animated'></div>
+        </transition>
+    </div>
 </template>
 
 <script>
+import AppHeader from '@c/layout/AppHeader.vue'
 import AppBanner from '@c/common/app-home/AppBanner'
 import AppList from '@c/common/app-home/AppList'
 import scroll from '../../util/scroll.js'
 export default {
     components: {
         AppBanner,
-        AppList
+        AppList,
+        AppHeader
     },
     data () {
         return {
             iteminfos: [],
-            time: Date.now()
+            time: Date.now(),
+            backshow: false
         }
     },
     methods: {
+        backTop () {
+            this.scroll.scrollTo(0,0,500)
+        },
         async getFilms () {
             let result = await this.$http({
                 url: `ithome/api/news/newslistpageget?Tag=&ot=${this.time}&page=0`
             })
             this.iteminfos = this.iteminfos.concat(result.Result)
-            this.time =  parseInt(this.time) - 10000000 
+            this.time =  parseInt(this.time) - 20000000 
         }
     },
     mounted () {
@@ -37,7 +49,7 @@ export default {
             el: this.$refs.root,
             handler: this.getFilms.bind(this),
             onscroll: (y) => {
-                console.log(y)
+                this.backshow = (y < -200)
             }
         })
     }
@@ -46,8 +58,22 @@ export default {
 
 <style lang="scss">
     .home{
-        height: 16rem;
-        margin-top: .266667rem;
+        height: 100vh;
         overflow: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    .button-top{
+        position: fixed;
+        bottom: 5.333333rem;
+        right: .533333rem;
+        height: 1.173333rem;
+        width: 1.173333rem;
+        padding: .026667rem .16rem;
+        background: url(//img.ithome.com/m/images/index/go-top.svg) center center no-repeat;
+        background-size: 1.173333rem 1.173333rem;
     }
 </style>

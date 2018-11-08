@@ -1,11 +1,13 @@
 <template>
     <div>
+        <app-header></app-header>
         <rank-banner></rank-banner>
         <rank-list v-for = 'item in ranklist' :key= 'item.id' :item= 'item'></rank-list>
     </div>    
 </template>
 
 <script>
+import AppHeader from '@c/layout/AppHeader.vue'
 import RankBanner from '@c/common/app-rank/RankBanner'
 import RankList from '@c/common/app-rank/RankList'
 let now = Date.now()
@@ -24,7 +26,8 @@ export default {
     },
     components: {
         RankBanner,
-        RankList
+        RankList,
+        AppHeader
     }
 }
 </script>
