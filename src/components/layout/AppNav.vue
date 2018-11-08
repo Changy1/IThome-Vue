@@ -3,19 +3,19 @@
     <div class='nav'>
         <transition enter-active-class="slideInRight" leave-active-class="slideOutRight">
             <nav v-if= "navshow" class='animated'>
-                <router-link v-if = '!userinfo' to='/login'>
+                <router-link to='/login'>
                     <div class='nav-personal'>
                         <div class="nav-personal_img">
                             <img v-if = 'userinfo' src='https://img.ithome.com/m/images/user/noavatar.png'>
-                            <img v-if = '!userinfo' src= 'https://img.ithome.com/quan_m/images/user/no-login-hdimg.png'>
+                            <img v-else src= 'https://img.ithome.com/quan_m/images/user/no-login-hdimg.png'>
                         </div>
                         <div class="nav-personal_name">
                             <span v-if = 'userinfo' class='nav-personal_nickname'>{{ this.userinfo }}</span>
-                            <span v-if = '!userinfo' class='nav-personal_nickname'>登录/注册</span>
+                            <span v-else class='nav-personal_nickname'>登录/注册</span>
                             <p> 
                                 <span v-if = 'userinfo' class='nav-personal_lv'>Lv.0</span>
                                 <span v-if = 'userinfo' class="nav-personal_ID">ID:596116693</span>
-                                <span v-if = '!userinfo' class="nav-personal_ID">登录软媒通行证，畅享所有服务</span>
+                                <span v-else class="nav-personal_ID">登录软媒通行证，畅享所有服务</span>
                             </p>
                         </div>
                     </div>
@@ -67,6 +67,7 @@ export default {
     props : ['navshow'],
     mounted () {
         this.userinfo = localStorage.getItem('userInfo') || ''
+        console.log(typeof this.userinfo)
     }
 }
 </script>

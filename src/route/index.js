@@ -8,6 +8,7 @@ import AppHotcomment from '../pages/hotcomment/AppHotcomment.vue'
 import AppNotfound from '../pages/not-found/AppNotfound.vue'
 import AppLogin from '../pages/login/AppLogin.vue'
 import AppRegister from '../pages/register/AppRegister.vue'
+import AppRing from '../pages/ring/AppRing.vue'
 
 Vue.use(VueRouter)
 
@@ -37,6 +38,10 @@ const routes = [
     {
         path: '/register',
         component: AppRegister
+    },
+    {
+        path: '/ring',
+        component: AppRing
     },
     {
         path: '/not-found',

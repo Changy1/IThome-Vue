@@ -2,15 +2,15 @@
     <div>
         <div class="header-container">
             <div class="header-logo">
-                <router-link to='/home' v-if = 'ring'>
+                <a v-if = 'isRing'>
                     <img src='http://img.ithome.com/quan_m/images/index/logo.svg'>
-                </router-link>
-                <router-link to='/home' v-if = '!ring'>
+                </a>
+                <router-link to='/home' v-else>
                     <img src='http://img.ithome.com/m/images/index/logo.svg'>
                 </router-link>
             </div>
             <div class="header-options">
-                <router-link to = '/home' v-if = 'ring' class="header-options_left">
+                <router-link to = '/home' v-if = 'isRing' class="header-options_left">
                     <img src='//img.ithome.com/quan_m/images/index/ithome-logo.svg'>
                     <span>咨询</span>
                 </router-link>
@@ -18,10 +18,10 @@
                     <img src='//img.ithome.com/m/images/index/lapin-logo-gray.svg'>
                     <span>辣品</span>
                 </a>
-                <a v-if = '!ring' class="header-options_center">
+                <router-link to = '/ring' v-if = '!isRing' class="header-options_center">
                     <img src='//img.ithome.com/m/images/index/circle-logo-gray.svg'>
                     <span>圈子</span>
-                </a>
+                </router-link>
                 <a @click = 'navshow = !navshow' class="header-options_right">
                     <img src='//img.ithome.com/m/images/index/um-search.svg'>
                 </a>
@@ -29,7 +29,7 @@
 
             <app-nav :navshow.sync = 'navshow'></app-nav>
         </div> 
-        <app-tab v-if = '!ring' :tabshow = 'tabshow'></app-tab>
+        <app-tab v-if = '!isRing' :tabshow = 'tabshow'></app-tab>
     </div>
 </template>
 
@@ -45,7 +45,7 @@ export default {
             },
         }
     },
-    props: ['ring'],
+    props: ['isRing'],
     components: {
         AppNav,
         AppTab,
@@ -56,6 +56,7 @@ export default {
 
 <style lang="scss">
     .header-container {
+        background: #fff;
         height: 1.413333rem;
         display: flex;
         justify-content: space-between;
