@@ -6,6 +6,8 @@ import AppHome from '../pages/home/AppHome.vue'
 import AppRank from '../pages/rank/AppRank.vue'
 import AppHotcomment from '../pages/hotcomment/AppHotcomment.vue'
 import AppNotfound from '../pages/not-found/AppNotfound.vue'
+import AppLogin from '../pages/login/AppLogin.vue'
+import AppRegister from '../pages/register/AppRegister.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +29,14 @@ const routes = [
     {
         path: '/hotcomment',
         component: AppHotcomment
+    },
+    {
+        path: '/login',
+        component: AppLogin
+    },
+    {
+        path: '/register',
+        component: AppRegister
     },
     {
         path: '/not-found',

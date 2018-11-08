@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div ref='root' class='home'>
-            <div>
-                <app-header></app-header>
-                <app-banner></app-banner>
-                <app-list :iteminfos = 'iteminfos'></app-list>
-            </div>
-        </div>    
+        <app-header></app-header>
+            <div ref='root' class='home'>
+                <div>
+                    <app-banner></app-banner>
+                    <app-list :iteminfos = 'iteminfos'></app-list>
+                </div>
+            </div>    
         <transition enter-active-class="fadeIn" leave-active-class="fadeOut">
             <div @click= "backTop" v-if = 'backshow' class='button-top animated'></div>
         </transition>
@@ -58,13 +58,9 @@ export default {
 
 <style lang="scss">
     .home{
-        height: 100vh;
         overflow: hidden;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        height: 100vh;
+        margin-top: .266667rem;
     }
     .button-top{
         position: fixed;

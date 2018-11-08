@@ -2,16 +2,23 @@
     <div>
         <div class="header-container">
             <div class="header-logo">
-                <a>
+                <router-link to='/home' v-if = 'ring'>
+                    <img src='http://img.ithome.com/quan_m/images/index/logo.svg'>
+                </router-link>
+                <router-link to='/home' v-if = '!ring'>
                     <img src='http://img.ithome.com/m/images/index/logo.svg'>
-                </a>
+                </router-link>
             </div>
             <div class="header-options">
+                <router-link to = '/home' v-if = 'ring' class="header-options_left">
+                    <img src='//img.ithome.com/quan_m/images/index/ithome-logo.svg'>
+                    <span>咨询</span>
+                </router-link>
                 <a class="header-options_left">
                     <img src='//img.ithome.com/m/images/index/lapin-logo-gray.svg'>
                     <span>辣品</span>
                 </a>
-                <a class="header-options_center">
+                <a v-if = '!ring' class="header-options_center">
                     <img src='//img.ithome.com/m/images/index/circle-logo-gray.svg'>
                     <span>圈子</span>
                 </a>
@@ -22,7 +29,7 @@
 
             <app-nav :navshow.sync = 'navshow'></app-nav>
         </div> 
-        <app-tab :tabshow = 'tabshow'></app-tab>
+        <app-tab v-if = '!ring' :tabshow = 'tabshow'></app-tab>
     </div>
 </template>
 
@@ -35,9 +42,10 @@ export default {
             navshow: false,
             tabshow: {          // 这里父组件定义一个对象，给子组件地址，保证下面两级都能改变数据
                 yesorno: false
-            }
+            },
         }
     },
+    props: ['ring'],
     components: {
         AppNav,
         AppTab,
