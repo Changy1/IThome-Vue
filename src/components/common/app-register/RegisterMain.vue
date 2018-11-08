@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form class="register">
+        <form @submit.prevent = 'register' class="register">
             <div class='register-main'>
                 <div class="register-text">使用软媒通行证，畅享软媒所有服务</div>
                 <div class="register-product">
@@ -8,15 +8,15 @@
                 </div>
                 <div class="register-input">
                     <div class="register-input_username">
-                        <input type="text" class="user-input" placeholder="手机号">
+                        <input v-model = 'phone' type="text" class="user-input" placeholder="手机号">
                     </div>
                     <div class="register-input_password">
-                        <input type="text" class="user-password" placeholder="短信验证码" >
+                        <input v-model = 'code' type="text" class="user-password" placeholder="短信验证码" >
                     </div>
-                    <a class="user-forget">获取验证码</a>
-                    <a class="register-input_btn">
+                    <a @click = 'sendCode' class="user-forget">{{ isResend ? '重发('+resendTime+'s)' : '获取验证码' }}</a>
+                    <button type='submit' class="register-input_btn">
                             注册
-                    </a>
+                    </button>
                     <div class="register-input_a">
                         <router-link to="/login"> 
                             我已有软媒通行证，立即登录
@@ -47,6 +47,10 @@
 export default {
     data () {
         return {
+            phone: '',
+            code: '',
+            isResend: false,
+            resendTime: 60,
             productli: [
                 { id:1, src: '/images/ithome.png'},
                 { id:2, src: '/images/qiyu.png'},
@@ -57,6 +61,51 @@ export default {
                 { id:2, src: '/images/iconwechat.png'},
                 { id:3, src: '/images/iconweibo.png'}
             ]
+        }
+    },
+    methods: {
+        async sendCode () {
+            if( !this.isResend){
+                let res = await this.$http({
+                    url: '/mz/v4/api/code',
+                    method: 'POST',
+                    data: {
+                        mobile: this.phone,
+                        type: "2"
+                    }
+                }) 
+                if ( res.status === 0 ) { // 验证码发送成功
+                    this.authCode()
+                }
+            }
+
+        },
+        async register () {
+            let res = await this.$http({
+                url: '/mz/v4/api/login',
+                method: 'POST',
+                data: {
+                    loginType: 1,
+                    password: this.code,
+                    username: this.phone
+                }
+            })
+            if( res.status === 0) {             // 等于0就是认证成功，那么存储他的手机号和验证码还有用户名
+                localStorage.setItem('userInfo',res.data.data.name)
+                this.$cookies.set( 'password', this.code )
+                this.$cookies.set( 'username', this.phone)
+            }
+        },
+        authCode () {
+            this.isResend = true
+            this.timer = setInterval(() => {
+                this.resendTime --
+                if ( this.resendTime === 0 ) {
+                    clearInterval(this.timer)
+                    this.isResend = false
+                    this.resendTime = 60
+                }
+            },1000)
         }
     }
 }
@@ -144,6 +193,7 @@ export default {
                     border-radius: 22px;
                 }
                 .register-input_btn {
+                    border: none;
                     width: 7.226667rem;
                     height: 1.2rem;
                     line-height: 1.2rem;
