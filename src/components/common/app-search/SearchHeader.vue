@@ -1,8 +1,12 @@
 <template>
     <div>
         <div class='search-input'>
-            <input type="text" class="search-text">
-            <span class='search-btn'>搜索</span>
+            <input v-model= 'key' type="text" class="search-text">
+            <!-- 这里需要注意使用params穿参就必须使用name了 query无所谓 -->
+            <router-link :to = "{ path: '/search/text', query: {key: key}}" 
+                        class='search-btn'
+                        @click.native = 'go'
+                        >搜索</router-link>
         </div>
         <div class="search-nav">
             <span 
@@ -19,12 +23,18 @@
 export default {
     data () {
         return {
+            key: this.$route.query.key,
             type: 'wenzhang',
             navli: [
                 { id:1, title: '文章', type: 'wenzhang'},
                 { id:2, title: '辣品', type: 'lapin'},
                 { id:3, title: '圈子', type: 'quanzi'}
             ]
+        }
+    },
+    methods: {
+        go () {
+            this.$router.go(0)  //这里可以让他当前页面刷新
         }
     }
 }
