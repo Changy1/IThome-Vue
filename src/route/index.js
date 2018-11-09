@@ -9,6 +9,10 @@ import AppNotfound from '../pages/not-found/AppNotfound.vue'
 import AppLogin from '../pages/login/AppLogin.vue'
 import AppRegister from '../pages/register/AppRegister.vue'
 import AppRing from '../pages/ring/AppRing.vue'
+import AppSearch from '../pages/search/AppSearch.vue'
+import SearchKeys from '@c/common/app-search/SearchKeys.vue'
+import SearchText from '@c/common/app-search/SearchText.vue'
+
 
 Vue.use(VueRouter)
 
@@ -34,6 +38,24 @@ const routes = [
     {
         path: '/login',
         component: AppLogin
+    },
+    {
+        path: '/search',
+        component: AppSearch,
+        children: [
+            {
+                path: 'keys',
+                component: SearchKeys
+            },
+            {
+                path: 'text',
+                component: SearchText,
+            },
+            {
+                path: '',
+                component: SearchKeys
+            },
+        ]
     },
     {
         path: '/register',
