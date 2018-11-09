@@ -1,19 +1,23 @@
 <template>
     <div class= 'list-itemone'>
         <div class="list-itemone_top">
-            <img class='list-itemone_img' src='https://avatar.ithome.com/avatars/000/00/00/01_60.jpg'>
-            <span class='list-itemone_name'>刺客</span>
-            <span class='list-itemone_fan'>反馈意见</span>
+            <img class='list-itemone_img' :src= 'info.HeadImg'>
+            <span class='list-itemone_name'>{{ info.Un }}</span>
+            <span class='list-itemone_fan'>{{ info.Cn }}</span>
         </div>
         <div class="list-itemone_center">
-            <span class='list-itemone_tip tip-default'>杂谈</span>
-            <span class='list-itemone_text'>大大是大法师的发啥的发送到发送到法师打发士大夫士大夫阿斯蒂芬阿萨德发送到按说发阿萨德发送</span>
+            <span   v-for = '(item,index) in info.TieTips' 
+                    :key = 'index'
+                    class='list-itemone_tip'
+                    :class = 'item.TipClass'
+                >{{ item.TipName }}</span>
+            <span class='list-itemone_text'>{{ info.T }}</span>
         </div>
         <div class="list-itemoen_bottom">
-            <span class='list-itemone_time'>2小时前发布</span>
-            <span class='list-itemone_user'>嘿嘿哟哟</span>
-            <span class='list-itemone_now'>31分钟前</span>
-            <span class='list-itemone_count'>31评论</span>
+            <span class='list-itemone_time'>{{ info.PostDateStr }}发布</span>
+            <span class='list-itemone_user'>{{ info.Rn }}</span>
+            <span class='list-itemone_now'>{{ info.LastCommentDateStr }}</span>
+            <span class='list-itemone_count'>{{ info.Rc }}评论</span>
         </div>
     </div>    
 </template>
@@ -21,7 +25,7 @@
 <script>
 
 export default {
-    
+    props: ['info']
 }
 </script>
 

@@ -21,6 +21,13 @@ module.exports = {
                 pathRewrite: {
                   '^/mz': ''
                 }
+            },
+            '/quan': {
+                target: 'https://quan.ithome.com',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/quan' : ''
+                }
             }
         }
     },

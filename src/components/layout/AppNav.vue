@@ -67,7 +67,6 @@ export default {
     props : ['navshow'],
     mounted () {
         this.userinfo = localStorage.getItem('userInfo') || ''
-        console.log(typeof this.userinfo)
     }
 }
 </script>

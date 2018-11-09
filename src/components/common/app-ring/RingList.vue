@@ -16,12 +16,12 @@ export default {
     },
     data () {
         return {
-            type: 1, 
+            type: 0, 
             rilist: [
-                { id: 1, title: '新回复', type : 0, url: 'https://quan.ithome.com/wap/api/tie/tielistget?columnID=0&type=0&orderTime=1541689286000'},
-                { id: 2, title: '热帖', type : 1, url: 'https://quan.ithome.com/wap/api/tie/tielistget?columnID=0&type=3&visitCount=300'},
-                { id: 3, title: '新发表', type : 2, url: 'https://quan.ithome.com/wap/api/tie/tielistget?columnID=0&type=1&orderTime=1541683128000'},
-                { id: 4, title: '新发表', type : 3, url: 'https://quan.ithome.com/wap/api/tie/tielistget?columnID=0&type=5&orderTime=1484451659000&visitCount='},
+                { id: 1, title: '新回复', type : 0 },
+                { id: 2, title: '热帖', type : 1 },
+                { id: 3, title: '新发表', type : 2 },
+                { id: 4, title: '精华', type : 3 },
             ]
         }
     }

@@ -21,7 +21,7 @@ export default {
         AppHeader,
         RingBanner,
         RingList
-    }
+    },
 }
 </script>
 
