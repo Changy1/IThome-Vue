@@ -1,6 +1,9 @@
 <template>
     <div class = 'search-bottom'>
-        <search-text v-for = 'item in textli' :key = 'item.newsid' :info = 'item'></search-text>
+        <div v-if = 'textli.length'>
+            <search-text v-for = 'item in textli' :key = 'item.newsid' :info = 'item'></search-text>
+        </div>
+        <div v-else class='search-nohas'>没有更多了</div>
     </div>
 </template>
 
@@ -14,7 +17,7 @@ export default {
     data () {
         return {
             key: this.$route.query.key,
-            textli: []
+            textli: [],
         }
     },
     async mounted () {
@@ -28,6 +31,17 @@ export default {
 
 <style lang="scss">
     .search-bottom {
-        padding: .32rem .48rem;
+        padding: 0 .48rem;
+        background: #fff;
+        margin-top: .053333rem;
+        overflow: hidden;
+    }
+    .search-nohas {
+        width: 100%;
+        height: .373333rem;
+        line-height: .373333rem;
+        padding: .373333rem 0;
+        margin-bottom: .373333rem;
+        text-align: center;
     }
 </style>

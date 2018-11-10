@@ -22,7 +22,7 @@
                 </router-link>
                 <div class="nav-search">
                         <img src='//img.ithome.com/m/images/index/search-ico.svg'>
-                        <span>搜索关键词</span>
+                        <router-link to = '/search/keys'>搜索关键词</router-link>
                 </div>
                 <div class="nav-text">
                     <ul>
@@ -124,7 +124,7 @@ export default {
                 background: #f3f4f5;
                 border-radius: .533333rem;
                 text-align: center;
-                span{
+                a{
                     color: #969696;
                     display: inline-block;
                 }

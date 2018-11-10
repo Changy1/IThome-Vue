@@ -43,6 +43,7 @@ export default {
 <style lang="scss">
     .search-input {
         padding: .208rem 0;
+        background: #fff;
         .search-text {
             outline: none;
             height: .96rem;
@@ -58,12 +59,13 @@ export default {
         } 
     }
     .search-nav {
+        background: #fff;
         z-index: 200;
         height: 1.28rem;
         display: flex;
         justify-content: space-around;
         line-height: 1.28rem;
-        box-shadow: 0 .08rem .106667rem 0 rgba(0,0,0,.05)
+        box-shadow: 0 .08rem .106667rem 0 rgba(0,0,0,.05);
     }
     .active {
         color: #d22222;

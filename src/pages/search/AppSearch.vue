@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class='content'>
         <search-header></search-header>
         <router-view></router-view>
     </div>
@@ -17,5 +17,8 @@ export default {
 </script>
 
 <style lang="scss">
-
+    .content {
+        background: #f2f3f6;
+        height: 100vh;
+    }
 </style>
