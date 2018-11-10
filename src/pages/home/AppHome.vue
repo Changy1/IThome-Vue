@@ -59,7 +59,7 @@ export default {
 <style lang="scss">
     .home{
         overflow: hidden;
-        height: 100vh;
+        height: calc(100vh - 2.613333rem);
         margin-top: .266667rem;
     }
     .button-top{

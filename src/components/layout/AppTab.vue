@@ -42,7 +42,8 @@ export default {
                 { id: 22, title: '科普', path: '/' },
             ],
             swiperOption: {                 
-               slidesPerView: 'auto'        // 设置slider容器能够同时显示的slides数量（auto 根据宽度自动设定）
+                slidesPerView: 'auto',        // 设置slider容器能够同时显示的slides数量（auto 根据宽度自动设定）
+                slidesOffsetAfter: 50,
             }
         }
     },

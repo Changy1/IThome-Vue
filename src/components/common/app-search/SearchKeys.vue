@@ -45,9 +45,9 @@ export default {
             display: flex;
             flex-wrap: wrap;
             span {
+                background: #fff;
                 height: .96rem;
                 line-height: .96rem;
-                background-color: #f4f5f6;
                 border-radius: .533333rem;
                 padding: 0 .48rem;
                 margin: .16rem;

@@ -9,7 +9,6 @@
 
 <script>
 import RankItem from '@c/common/app-rank/RankItem.vue'
-
 export default {
     data () {
         return {
@@ -19,12 +18,23 @@ export default {
     components: {
         RankItem
     },
-    props: ['item'],
+    props: ['item', 'index', 'position'],
     async created () {
         let result = await this.$http({
             url: this.item.url
         })
         this.rankitem = result.Result
+    },
+    watch: {
+        index: {
+            immediate: true,
+            handler () {
+                if( this.item.id == this.index){
+                    if( ! this.$el ) return false
+                    this.position.top = this.$el.offsetTop
+                }
+            }
+        }
     }
 }
 </script>

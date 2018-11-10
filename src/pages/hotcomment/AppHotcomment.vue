@@ -55,7 +55,7 @@ export default {
 
 <style lang="scss">
     .scroll-hot {
-        height: 15.386667rem;
+        height: calc(100vh - 2.613333rem);
         overflow: hidden;
     }
     .button-top {
