@@ -1,14 +1,18 @@
 <template>
     <div class='list'>
-        <collect-item></collect-item>
+        <collect-item v-for = 'item in collect.info' :key = 'item.id'></collect-item>
     </div> 
 </template>
 
 <script>
 import CollectItem from '@c/common/app-collect/CollectItem'
+import { mapState } from 'vuex';
 export default {
     components: {
         CollectItem
+    },
+    computed: {
+        ...mapState(['collect'])
     }
 }
 </script>

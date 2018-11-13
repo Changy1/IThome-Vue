@@ -30,7 +30,8 @@
                 <div 
                 @click = 'addCollect'
                 class="footer-collect">
-                    <button></button>
+                    <button
+                    :class = '{ before : active, nobefore: !active }'></button>
                 </div>
                 <div class="footer-share">
                     <button></button>
@@ -46,7 +47,7 @@
 
 <script>
 import Vue from 'vue'
-
+import { mapActions } from 'vuex'
 Vue.filter('timeout', ( val, param ) => {
     if ( !val ) return false
     let newarr = val.split('T')
@@ -57,7 +58,22 @@ Vue.filter('timeout', ( val, param ) => {
 export default {
     data () {
         return {
-            info: {}
+            info: {},
+            active: false
+        }
+    },
+    methods: {
+        ...mapActions({
+            addInfo: 'collect/addInfo'
+        }),
+        async addCollect () {
+            let { id, title, time, img } = this.info
+            let before = await this.addInfo({
+                id, title, time, img 
+            })
+            if ( before) {       //当之前没有这个收藏的时候点击添加成功，然后改变button的class
+                this.active = true
+            }
         }
     },
     mounted () {    //这时候数据已经加载了，dom也已经渲染了，所以在渲染dom的时候还没有修改info
@@ -158,11 +174,18 @@ export default {
                         height: 1.493333rem;
                         width: 1.493333rem;
                         padding: .026667rem .16rem;
+                        border: none;
+                        outline: none;
+                    }
+                    .nobefore {
                         background: url('//img.ithome.com/m/images/news/collect-gray.svg') no-repeat;
                         background-size: .768rem .768rem;
                         background-position: center center;
-                        border: none;
-                        outline: none;
+                    }
+                    .before {
+                        background: url('//img.ithome.com/m/images/news/collect-red.svg')no-repeat;
+                        background-size: .768rem .768rem;
+                        background-position: center center;
                     }
                 }
                 .footer-share {

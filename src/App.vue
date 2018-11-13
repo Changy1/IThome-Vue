@@ -9,6 +9,9 @@
 
 export default {
     name: 'app',
+    beforeCreate () {
+      this.$store.dispatch('collect/startInfo')
+    }
 }
 </script>
 

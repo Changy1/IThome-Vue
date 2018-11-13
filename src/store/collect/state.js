@@ -1,5 +1,5 @@
 const state = {
-    oneinfo: []
+    info: []
 }
 
 export default state

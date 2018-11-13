@@ -1,0 +1,2 @@
+
+export const UPDATE_COLLECT_INFO = 'UPDATE_COLLECT_INFO '
