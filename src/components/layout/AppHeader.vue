@@ -29,7 +29,7 @@
 
             <app-nav :navshow.sync = 'navshow'></app-nav>
         </div> 
-        <app-tab v-if = '!isRing' :tabshow = 'tabshow'></app-tab>
+        <app-tab v-if = '!isRing && !isDetails ' :tabshow = 'tabshow'></app-tab>
     </div>
 </template>
 
@@ -45,7 +45,7 @@ export default {
             },
         }
     },
-    props: ['isRing'],
+    props: ['isRing','isDetails'],
     components: {
         AppNav,
         AppTab,

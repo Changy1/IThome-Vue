@@ -1,6 +1,8 @@
 <template>
     <div class='item'>
-        <a class='item-box'>
+        <router-link 
+        :to = "{name: 'details' , query: { id: info.newsid , title: info.title , time: info.orderdate , img: info.image} }" 
+        class='item-box'>
             <div class='item-img'>
                 <img :src='info.image'>
             </div>
@@ -14,7 +16,7 @@
                     <span class='item-text_review'>{{ info.commentcount }}评</span>
                 </div>
             </div>
-        </a>
+        </router-link>
     </div>    
 </template>
 

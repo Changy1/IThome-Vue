@@ -13,6 +13,7 @@ import AppSearch from '../pages/search/AppSearch.vue'
 import SearchKeys from '@c/common/app-search/SearchKeys.vue'
 import SearchList from '@c/common/app-search/SearchList.vue'
 import AppCollect from '../pages/collect/AppCollect.vue'
+import AppDetails from '../pages/details/AppDetails.vue'
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,11 @@ const routes = [
     {
         path: '/hotcomment',
         component: AppHotcomment
+    },
+    {
+        name: 'details',
+        path: '/details',
+        component: AppDetails
     },
     {
         path: '/login',

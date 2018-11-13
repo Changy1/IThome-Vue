@@ -12,12 +12,14 @@ import '@libs'
 
 import router from './route'
 
+import store from './store'
 // 阻止Vue的提示
 Vue.config.productionTip = false
 
 // 根实例
 new Vue({ 
   router,
+  store,
   // 控制app里面放的什么内容
   render: h => h(App)
 }).$mount('#app')
