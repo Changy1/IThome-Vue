@@ -12,7 +12,7 @@ import AppRing from '../pages/ring/AppRing.vue'
 import AppSearch from '../pages/search/AppSearch.vue'
 import SearchKeys from '@c/common/app-search/SearchKeys.vue'
 import SearchList from '@c/common/app-search/SearchList.vue'
-
+import AppCollect from '../pages/collect/AppCollect.vue'
 
 Vue.use(VueRouter)
 
@@ -61,6 +61,10 @@ const routes = [
     {
         path: '/register',
         component: AppRegister
+    },
+    {
+        path: '/collect',
+        component: AppCollect
     },
     {
         path: '/ring',
