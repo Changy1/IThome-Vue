@@ -1,5 +1,6 @@
 
 import BetterScroll from 'better-scroll'
+import { Toast } from 'mint-ui'
 
 const scroll = ({
     el, // 拉动刷新的元素
@@ -15,6 +16,12 @@ const scroll = ({
     })
 
     scroll.on('pullingUp', async () => {
+        Toast({
+            message: '正在加载...',
+            position: 'middle',
+            className: 'toast',
+            duration: 1000
+        });
         await handler()
         scroll.finishPullUp()       // 解决拉动刷新 // 可以多次执行上拉刷新
         scroll.refresh()            // 重新计算

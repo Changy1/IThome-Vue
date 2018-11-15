@@ -72,4 +72,15 @@ export default {
         background: url(//img.ithome.com/m/images/index/go-top.svg) center center no-repeat;
         background-size: 1.173333rem 1.173333rem;
     }
+    .toast {
+        position: fixed;
+        bottom: 1.333333rem;
+        width: 50vw;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        text-align: center;
+        background: rgba(0,0,0,0.5);
+        color: #fff;
+    }
 </style>

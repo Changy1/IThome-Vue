@@ -58,14 +58,4 @@ export default {
         height: calc(100vh - 2.613333rem);
         overflow: hidden;
     }
-    .button-top {
-        position: fixed;
-        bottom: 5.333333rem;
-        right: .533333rem;
-        height: 1.173333rem;
-        width: 1.173333rem;
-        padding: .026667rem .16rem;
-        background: url(//img.ithome.com/m/images/index/go-top.svg) center center no-repeat;
-        background-size: 1.173333rem 1.173333rem;
-    }
 </style>
