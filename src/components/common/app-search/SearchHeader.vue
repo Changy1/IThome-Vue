@@ -6,7 +6,11 @@
             <router-link :to = "{ path: '/search/text', query: {key: key}}" 
                         class='search-btn'
                         @click.native = 'go'
+                        style = 'margin-right: 0.5rem;'
                         >搜索</router-link>
+            <router-link to = "/home" 
+                        class='search-btn'
+                        >首页</router-link>
         </div>
         <div class="search-nav">
             <span 
@@ -52,7 +56,7 @@ export default {
             background: #f4f5f6;
             border-radius: .533333rem;
             border: none;
-            width: calc(100% - 1.866667rem);
+            width: calc(100% - 3rem);
         }
         .search-btn {
             color: #d22222;

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <app-header></app-header>
+        <app-header :ishome = 'ishome'></app-header>
             <div ref='root' class='home'>
                 <div>
                     <app-banner></app-banner>
@@ -28,7 +28,8 @@ export default {
         return {
             iteminfos: [],
             time: Date.now(),
-            backshow: false
+            backshow: false,
+            ishome: 'ishome'
         }
     },
     methods: {
@@ -73,6 +74,7 @@ export default {
         background-size: 1.173333rem 1.173333rem;
     }
     .toast {
+        z-index: 100;
         position: fixed;
         bottom: 1.333333rem;
         width: 50vw;

@@ -8,13 +8,13 @@
                 </div>
                 <div class="login-input">
                     <div class="login-input_username">
-                        <input type="text" class="user-input" placeholder="邮箱/手机号">
+                        <input v-model = 'username' type="text" class="user-input" placeholder="邮箱/手机号">
                     </div>
                     <div class="login-input_password">
-                        <input type="text" class="user-password" placeholder="密码" >
+                        <input v-model = 'password' type="text" class="user-password" placeholder="密码" >
                         <a class="user-forget">忘记密码？</a>
                     </div>
-                    <a class="login-input_btn">
+                    <a @click = 'login'  class="login-input_btn">
                             登录
                     </a>
                     <div class="login-input_a">
@@ -49,6 +49,7 @@
 
 
 <script>
+import { Toast } from 'mint-ui'
 export default {
     data () {
         return {
@@ -61,9 +62,49 @@ export default {
                 { id:1, src: '/images/iconqq.png'},
                 { id:2, src: '/images/iconwechat.png'},
                 { id:3, src: '/images/iconweibo.png'}
-            ]
+            ],
+            username: '',
+            password: ''
         }
-    }
+    },
+    methods: {
+        login () {
+            let userinfo = JSON.parse( localStorage.getItem('userInfo') )
+            let yesname = userinfo.username
+            let yesword = userinfo.password
+            if( this.username == yesname && this.password == yesword ) {
+                Toast({
+                    message: '登录成功',
+                    position: 'middle',
+                    className: 'toast',
+                    duration: 1000
+                })
+                setTimeout( () => {
+                    this.$router.push('home')
+                },1000)
+            } else {
+                Toast({
+                    message: '账号或密码错误',
+                    position: 'middle',
+                    className: 'toast',
+                    duration: 1000
+                })
+            }
+        }
+    },
+/*     beforeRouteLeave (to, from , next) {     //这里没法用
+        if ( !localStorage.getItem('userInfo') ){
+            console.log(10)
+            const answer = window.confirm('你确定不登录直接查看新闻吗？')
+            if (answer) {
+                next()
+            } else {
+                next(false)
+            }
+        } else {
+            next()
+        }
+    } */
 }
 </script>
 

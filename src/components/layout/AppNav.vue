@@ -10,7 +10,7 @@
                             <img v-else src= 'https://img.ithome.com/quan_m/images/user/no-login-hdimg.png'>
                         </div>
                         <div class="nav-personal_name">
-                            <span v-if = 'userinfo' class='nav-personal_nickname'>{{ this.userinfo }}</span>
+                            <span v-if = 'userinfo' class='nav-personal_nickname'>{{ this.userinfo.username }}</span>
                             <span v-else class='nav-personal_nickname'>登录/注册</span>
                             <p> 
                                 <span v-if = 'userinfo' class='nav-personal_lv'>Lv.0</span>
@@ -28,7 +28,8 @@
                     <ul>
                         <li v-for = 'item in li' :key = 'item.id' >
                             <img :src= 'item.src'>
-                            <span v-if = 'item.id != 3'  class=''>{{ item.text }}</span>
+                            <span v-if = 'item.id != 3 && item.id != 7'  class=''>{{ item.text }}</span>
+                            <span v-if = 'item.id == 7' @click = 'over'  class=''>{{ item.text }}</span>
                             <router-link to = '/collect' v-if = 'item.id ==3'>{{ item.text }}</router-link>
                         </li>
                     </ul>
@@ -50,6 +51,7 @@
 </template>
 
 <script>
+import { Toast } from 'mint-ui'
 export default {
     data () {
         return {
@@ -67,7 +69,31 @@ export default {
     },
     props : ['navshow'],
     mounted () {
-        this.userinfo = localStorage.getItem('userInfo') || ''
+        this.userinfo = JSON.parse( localStorage.getItem('userInfo') ) || ''
+    },
+    methods: {
+        over () {
+            //如果当前是登陆的话
+            if ( this.userinfo ){
+                localStorage.removeItem('userInfo')
+                Toast({
+                    message: '退出成功',
+                    position: 'middle',
+                    className: 'toast',
+                    duration: 1000
+                })
+                setTimeout( () => {
+                    this.$router.go(0)
+                },1000)
+            } else {
+                Toast({
+                    message: '登录后才可以退出哦',
+                    position: 'middle',
+                    className: 'toast',
+                    duration: 2000
+                })
+            }
+        }
     }
 }
 </script>

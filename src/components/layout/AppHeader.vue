@@ -14,11 +14,11 @@
                     <img src='//img.ithome.com/quan_m/images/index/ithome-logo.svg'>
                     <span>咨询</span>
                 </router-link>
-                <a @click = 'back' class="header-options_left">
+                <a @click = 'back' v-if= '!ishome' class="header-options_left">
                     <img src='//img.ithome.com/m/images/index/lapin-logo-gray.svg'>
                     <span>后退</span>
                 </a>
-                <router-link to = '/ring' v-if = '!isRing' class="header-options_center">
+                <router-link to = '/ring' v-if = '!isRing' :class= '{homequanzi: ishome}' class="header-options_center">
                     <img src='//img.ithome.com/m/images/index/circle-logo-gray.svg'>
                     <span>圈子</span>
                 </router-link>
@@ -50,7 +50,7 @@ export default {
             this.$router.go(-1)
         }
     },
-    props: ['isRing','isDetails'],
+    props: ['isRing','isDetails','ishome'],
     components: {
         AppNav,
         AppTab,
@@ -108,6 +108,9 @@ export default {
                 img{
                     width: .746667rem;
                 }
+            }
+            .homequanzi {
+                margin-left: 2rem;
             }
         }
     }

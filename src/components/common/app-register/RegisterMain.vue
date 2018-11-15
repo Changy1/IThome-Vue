@@ -44,6 +44,7 @@
 
 
 <script>
+import { Toast } from 'mint-ui'
 export default {
     data () {
         return {
@@ -90,10 +91,18 @@ export default {
                     username: this.phone
                 }
             })
-            if( res.status === 0) {             // 等于0就是认证成功，那么存储他的手机号和验证码还有用户名
-                localStorage.setItem('userInfo',res.data.data.name)
-                this.$cookies.set( 'password', this.code )
-                this.$cookies.set( 'username', this.phone)
+            //这里无法判断验证码是否正确了，因为后端接口多了一个图形验证码
+            if( res.status ) {             // 等于0就是认证成功，那么存储他的手机号和验证码还有用户名
+                Toast({
+                    message: '注册成功',
+                    position: 'middle',
+                    className: 'toast',
+                    duration: 1000
+                })
+                localStorage.setItem('userInfo',JSON.stringify({username: this.phone, password: this.code}))
+                setTimeout( () => {
+                    this.$router.push('login')
+                },1000)
             }
         },
         authCode () {

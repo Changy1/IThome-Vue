@@ -70,7 +70,14 @@ const routes = [
     },
     {
         path: '/collect',
-        component: AppCollect
+        component: AppCollect,
+        beforeEnter: (to, from, next) => {
+            if ( localStorage.getItem('userInfo') ) {
+                next()
+            } else {
+                next('/login')
+            }
+        }
     },
     {
         path: '/ring',
