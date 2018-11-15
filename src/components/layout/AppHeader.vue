@@ -14,9 +14,9 @@
                     <img src='//img.ithome.com/quan_m/images/index/ithome-logo.svg'>
                     <span>咨询</span>
                 </router-link>
-                <a class="header-options_left">
+                <a @click = 'back' class="header-options_left">
                     <img src='//img.ithome.com/m/images/index/lapin-logo-gray.svg'>
-                    <span>辣品</span>
+                    <span>后退</span>
                 </a>
                 <router-link to = '/ring' v-if = '!isRing' class="header-options_center">
                     <img src='//img.ithome.com/m/images/index/circle-logo-gray.svg'>
@@ -43,6 +43,11 @@ export default {
             tabshow: {          // 这里父组件定义一个对象，给子组件地址，保证下面两级都能改变数据
                 yesorno: false
             },
+        }
+    },
+    methods: {
+        back () {
+            this.$router.go(-1)
         }
     },
     props: ['isRing','isDetails'],

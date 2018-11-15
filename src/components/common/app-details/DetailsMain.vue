@@ -28,7 +28,7 @@
                     <button></button>
                 </div>
                 <div 
-                @click = 'addCollect'
+                @click = 'changeCollect'
                 class="footer-collect">
                     <button
                     :class = '{ before : active, nobefore: !active }'></button>
@@ -64,21 +64,24 @@ export default {
     },
     methods: {
         ...mapActions({
-            addInfo: 'collect/addInfo'
+            changeInfo: 'collect/changeInfo',
+            berforecollect : 'collect/berforecollect'
         }),
-        async addCollect () {
+        //当收藏过就删除收藏，如果没有收藏过就收藏
+        async changeCollect () {
             let { id, title, time, img } = this.info
-            let before = await this.addInfo({
+            let before = await this.changeInfo({
                 id, title, time, img 
-            })
-            if ( before) {       //当之前没有这个收藏的时候点击添加成功，然后改变button的class
-                this.active = true
-            }
+            })        
+            //改变了收藏的状态，然后改变button的class
+            this.active = !this.active
         }
     },
-    mounted () {    //这时候数据已经加载了，dom也已经渲染了，所以在渲染dom的时候还没有修改info
+    async mounted () {    //这时候数据已经加载了，dom也已经渲染了，所以在渲染dom的时候还没有修改info
                     //这时候info是个空，空传入过滤器没有split方法会报错
         this.info = this.$route.query
+        let before = await this.berforecollect(this.info.id)    //直接传递id
+        this.active = before
     }
 }
 </script>

@@ -2,8 +2,8 @@
     <div class='header'>
         <div class='header-box'>
             <a class='header-back'>
-                <button class='header-btn'> 
-                </button>
+                <router-link to = '/home' class='header-btn'> 
+                </router-link>
             </a>
             <div class='header-title'>
                 <a

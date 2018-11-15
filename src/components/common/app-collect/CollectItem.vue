@@ -1,24 +1,34 @@
 <template>
     <div class='item'>
-        <a class='item-box'>
+        <router-link 
+        :to = "{name: 'details' , query: { id: info.id , title: info.title , time: info.time , img: info.img} }" 
+        class='item-box'>
             <div class='item-img'>
-                <img src="https://img.ithome.com/newsuploadfiles/thumbnail/2018/11/393794_240.jpg">
+                <img :src= "info.img">
             </div>
             <div class='item-text'>
                 <div class='item-text_top'>
-                    <span class='item-text_topic'>发送到发打发阿斯蒂芬阿萨德阿斯蒂芬阿萨德</span>
+                    <span class='item-text_topic'>{{ info.title }}</span>
                 </div>
                 <div class='item-text_bottom'>
-                    <span class='item-text_time'>12312</span>
+                    <span class='item-text_time'>{{ info.time | timeout }}</span>
                 </div>
             </div>
-        </a>
+        </router-link>
     </div> 
 </template>
 
 <script>
+import Vue from 'vue'
+Vue.filter('timeout', ( val, param ) => {
+    if ( !val ) return false
+    let newarr = val.split('T')
+    let newtime = newarr[1].split(':')
+    let laststr = newarr[0] + ' ' + newtime[0] + ':' + newtime[1] 
+    return laststr
+})
 export default {
-    
+    props: ['info']
 }
 </script>
 

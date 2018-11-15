@@ -1,6 +1,6 @@
 <template>
     <div class='list'>
-        <collect-item v-for = 'item in collect.info' :key = 'item.id'></collect-item>
+        <collect-item v-for = 'item in collect.info' :key = 'item.id' :info = 'item'></collect-item>
     </div> 
 </template>
 

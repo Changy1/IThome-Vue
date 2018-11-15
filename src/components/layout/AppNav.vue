@@ -28,7 +28,8 @@
                     <ul>
                         <li v-for = 'item in li' :key = 'item.id' >
                             <img :src= 'item.src'>
-                            <span class=''>{{ item.text }}</span>
+                            <span v-if = 'item.id != 3'  class=''>{{ item.text }}</span>
+                            <router-link to = '/collect' v-if = 'item.id ==3'>{{ item.text }}</router-link>
                         </li>
                     </ul>
                 </div>
